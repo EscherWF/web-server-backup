@@ -46,20 +46,3 @@ class Logger():
             cls._logger = logger
         return cls._logger
 
-    @classmethod
-    def dump_mesh(cls, name, fmt, data):
-        rows = []
-        for row in data:
-            cols = []
-            for col in row:
-                cols.append(fmt.format(col))
-            rows.append('\t'.join(cols))
-        dump = '\n'.join(rows)
-
-        dest = '{}/debug/{}.txt'.format(
-            cf.env.DEST_ROOT_PATH,
-            name,
-        )
-
-        with open(dest, 'wb') as fp:
-            fp.write(dump.encode('utf-8'))
